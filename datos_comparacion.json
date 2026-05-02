@@ -1,0 +1,70 @@
+[
+  {
+    "nombre": "iPhone 17 Pro Max 256GB",
+    "categoria": "Telefonos",
+    "precios": [
+      {
+        "tienda": "LatinBien",
+        "precio": 2369.34
+      },
+      {
+        "tienda": "SoyTechno",
+        "precio": 1979.0
+      },
+      {
+        "tienda": "Multimax",
+        "precio": 2450.0
+      }
+    ]
+  },
+  {
+    "nombre": "iPhone 16 128GB",
+    "categoria": "Telefonos",
+    "precios": [
+      {
+        "tienda": "LatinBien",
+        "precio": 1560.25
+      },
+      {
+        "tienda": "SoyTechno",
+        "precio": 1139.0
+      },
+      {
+        "tienda": "Multimax",
+        "precio": 1620.0
+      }
+    ]
+  },
+  {
+    "nombre": "Samsung Galaxy A16 5G",
+    "categoria": "Telefonos",
+    "precios": [
+      {
+        "tienda": "LatinBien",
+        "precio": 284.32
+      },
+      {
+        "tienda": "SoyTechno",
+        "precio": 310.0
+      },
+      {
+        "tienda": "Multimax",
+        "precio": 310.0
+      }
+    ]
+  },
+  {
+    "nombre": "Aiwa 32 Smart TV",
+    "categoria": "Televisores",
+    "precios": [
+      {
+        "tienda": "LatinBien",
+        "precio": 196.57
+      },
+      {
+        "tienda": "Multimax",
+        "precio": 210.0
+      }
+    ]
+  }
+]

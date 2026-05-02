@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comparacion Precios Merida - Completo con IVOO</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .controls { padding: 20px; background: #f8f9fa; border-bottom: 2px solid #e9ecef; display: flex; gap: 15px; flex-wrap: wrap; }
+        .controls input, .controls select { padding: 10px 15px; border: 2px solid #667eea; border-radius: 8px; font-size: 1em; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; background: #f8f9fa; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; padding: 30px; }
+        .product-card { background: white; border: 2px solid #e9ecef; border-radius: 12px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: #667eea; }
+        .product-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; }
+        .product-header h3 { font-size: 1.3em; margin-bottom: 5px; }
+        .product-header .categoria { opacity: 0.9; font-size: 0.9em; }
+        .price-comparison { padding: 20px; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; margin: 8px 0; background: #f8f9fa; border-radius: 8px; transition: all 0.3s; }
+        .price-row.mejor { background: #d4edda; border: 2px solid #28a745; font-weight: bold; }
+        .price-row.peor { background: #f8d7da; border: 2px solid #dc3545; }
+        .store-name { font-weight: 600; color: #495057; }
+        .price { font-size: 1.2em; font-weight: bold; color: #667eea; }
+        .mejor .price { color: #28a745; }
+        .peor .price { color: #dc3545; }
+        .ahorro { background: #fff3cd; border: 2px solid #ffc107; padding: 15px; margin: 10px 20px; border-radius: 8px; text-align: center; }
+        .ahorro strong { color: #ff6b6b; font-size: 1.2em; }
+        .no-matches { text-align: center; padding: 60px; color: #6c757d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comparacion de Precios - Merida</h1>
+            <p>LatinBien vs SoyTechno vs Multimax vs IVOO - Venezuela</p>
+        </header>
+        
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Buscar producto..." oninput="filterProducts()">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="">Todas las categorias</option>
+                <option value="Telefonos">Telefonos</option>
+                <option value="Televisores">Televisores</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Monitores">Monitores</option>
+                <option value="Routers">Routers</option>
+                <option value="Computacion">Computacion</option>
+                <option value="Cocinas">Cocinas</option>
+                <option value="Neveras">Neveras</option>
+                <option value="Aires AC">Aires AC</option>
+                <option value="Lavadoras">Lavadoras</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Tablets">Tablets</option>
+                <option value="Automotriz">Automotriz</option>
+                <option value="Cocina">Cocina</option>
+                <option value="Energia">Energia</option>
+            </select>
+        </div>
+        
+        <div id="statsContainer" class="stats">
+            <div class="stat-card">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">Total Comparaciones</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-ahorro">0%</div>
+                <div class="label">Ahorro Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-mejor">$0</div>
+                <div class="label">Mejor Ahorro</div>
+            </div>
+        </div>
+        
+        <div id="productGrid" class="product-grid"></div>
+        
+        <div id="noMatches" class="no-matches" style="display:none;">
+            <h2>No se encontraron productos</h2>
+        </div>
+    </div>
+
+    <script>
+        let allData = [];
+        let filteredData = [];
+        
+        async function loadData() {
+            try {
+                const response = await fetch('comparacion_completa.json');
+                allData = await response.json();
+                filteredData = allData;
+                displayProducts();
+                updateStats();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('noMatches').style.display = 'block';
+            }
+        }
+        
+        function displayProducts() {
+            const grid = document.getElementById('productGrid');
+            const noMatches = document.getElementById('noMatches');
+            
+            if (filteredData.length === 0) {
+                grid.innerHTML = '';
+                noMatches.style.display = 'block';
+                return;
+            }
+            
+            noMatches.style.display = 'none';
+            grid.innerHTML = '';
+            
+            filteredData.forEach((prod, index) => {
+                const precios = prod.precios.sort((a, b) => a.precio - b.precio);
+                const minPrecio = precios[0].precio;
+                const maxPrecio = precios[precios.length - 1].precio;
+                const ahorro = maxPrecio - minPrecio;
+                const ahorroPct = ((ahorro / maxPrecio) * 100).toFixed(1);
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.dataset.category = prod.categoria;
+                card.dataset.name = prod.nombre.toLowerCase();
+                
+                let preciosHTML = '';
+                precios.forEach(p => {
+                    let rowClass = 'price-row';
+                    if (p.precio === minPrecio) rowClass += ' mejor';
+                    if (p.precio === maxPrecio && precios.length > 1) rowClass += ' peor';
+                    
+                    preciosHTML += `
+                        <div class="${rowClass}">
+                            <span class="store-name">${p.tienda}</span>
+                            <span class="price">$${p.precio.toFixed(2)}</span>
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="product-header">
+                        <h3>${prod.nombre}</h3>
+                        <div class="categoria">${prod.categoria}</div>
+                    </div>
+                    <div class="price-comparison">
+                        ${preciosHTML}
+                    </div>
+                    ${ahorro > 0 ? `
+                        <div class="ahorro">
+                            Ahorro: <strong>$${ahorro.toFixed(2)}</strong> (${ahorroPct}%)
+                        </div>
+                    ` : ''}
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            filteredData = allData.filter(prod => {
+                const nameMatch = prod.nombre.toLowerCase().includes(searchTerm);
+                const categoryMatch = !category || prod.categoria === category;
+                return nameMatch && categoryMatch;
+            });
+            
+            displayProducts();
+            updateStats();
+        }
+        
+        function updateStats() {
+            let totalAhorros = [];
+            let maxAhorro = 0;
+            
+            filteredData.forEach(prod => {
+                const precios = prod.precios.map(p => p.precio);
+                const min = Math.min(...precios);
+                const max = Math.max(...precios);
+                const saving = max - min;
+                
+                if (saving > 0) totalAhorros.push(saving);
+                if (saving > maxAhorro) maxAhorro = saving;
+            });
+            
+            const avgAhorro = totalAhorros.length > 0 
+                ? (totalAhorros.reduce((a, b) => a + b, 0) / totalAhorros.length).toFixed(0) 
+                : 0;
+            
+            document.getElementById('stat-total').textContent = filteredData.length;
+            document.getElementById('stat-ahorro').textContent = avgAhorro + '%';
+            document.getElementById('stat-mejor').textContent = '$' + maxAhorro.toFixed(2);
+        }
+        
+        loadData();
+    </script>
+</body>
+</html>

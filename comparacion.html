@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparacion de Precios - Merida, Venezuela</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .info-bar {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .product-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .price-comparison {
+            padding: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .price-row.best-price {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            font-weight: bold;
+        }
+        
+        .savings {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comparacion de Precios</h1>
+            <p>Merida, Venezuela - LatinBien vs SoyTechno</p>
+        </header>
+        
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Buscar producto..." oninput="filterProducts()">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="">Todas las categorias</option>
+                <option value="Telefonos">Telefonos</option>
+                <option value="Televisores">Televisores</option>
+                <option value="Computacion">Computacion</option>
+            </select>
+        </div>
+        
+        <div id="productGrid" class="product-grid"></div>
+        <div id="noMatches" style="display:none; text-align:center; padding:60px; color:#6c757d;">
+            <h2>No se encontraron productos</h2>
+        </div>
+    </div>
+
+    <script>
+        let allData = [];
+        let filteredData = [];
+        
+        async function loadData() {
+            try {
+                const response = await fetch('latinbien_products.json');
+                const latinbien = await response.json();
+                
+                const response2 = await fetch('soytechno_products.json');
+                const soytechno = await response2.json();
+                
+                // Crear comparaciones
+                allData = createComparisons(latinbien, soytechno);
+                filteredData = allData;
+                displayProducts();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('noMatches').style.display = 'block';
+            }
+        }
+        
+        function createComparisons(latinbien, soytechno) {
+            const matches = [];
+            
+            latinbien.forEach(lbProduct => {
+                const matchGroup = [lbProduct];
+                
+                soytechno.forEach(stProduct => {
+                    const lbName = lbProduct.name.toLowerCase();
+                    const stName = stProduct.name.toLowerCase();
+                    
+                    const lbWords = new Set(lbName.split(' '));
+                    const stWords = new Set(stName.split(' '));
+                    
+                    const intersection = new Set([...lbWords].filter(x => stWords.has(x)));
+                    const union = new Set([...lbWords, ...stWords]);
+                    
+                    const similarity = union.size > 0 ? intersection.size / union.size : 0;
+                    
+                    if (similarity >= 0.5) {
+                        matchGroup.push(stProduct);
+                    }
+                });
+                
+                if (matchGroup.length > 1) {
+                    matches.push(matchGroup);
+                }
+            });
+            
+            return matches;
+        }
+        
+        function displayProducts() {
+            const grid = document.getElementById('productGrid');
+            const noMatches = document.getElementById('noMatches');
+            
+            if (filteredData.length === 0) {
+                grid.innerHTML = '';
+                noMatches.style.display = 'block';
+                return;
+            }
+            
+            noMatches.style.display = 'none';
+            grid.innerHTML = '';
+            
+            filteredData.forEach(group => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                const sortedGroup = group.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+                const minPrice = parseFloat(sortedGroup[0].price);
+                const maxPrice = parseFloat(sortedGroup[sortedGroup.length - 1].price);
+                const savings = maxPrice - minPrice;
+                const savingsPct = ((savings / maxPrice) * 100).toFixed(1);
+                
+                let pricesHTML = '';
+                sortedGroup.forEach(product => {
+                    const price = parseFloat(product.price);
+                    let rowClass = 'price-row';
+                    if (price === minPrice) rowClass += ' best-price';
+                    
+                    pricesHTML += `
+                        <div class="${rowClass}">
+                            <span>${product.store}</span>
+                            <span>$${product.price}</span>
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="product-header">
+                        <h3>${group[0].name.substring(0, 60)}</h3>
+                        <div>${group[0].category || 'Otros'}</div>
+                    </div>
+                    <div class="price-comparison">
+                        ${pricesHTML}
+                    </div>
+                    ${savings > 0 ? `
+                        <div class="savings">
+                            Ahorro: $${savings.toFixed(2)} (${savingsPct}%)
+                        </div>
+                    ` : ''}
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            filteredData = allData.filter(group => {
+                const nameMatch = group[0].name.toLowerCase().includes(searchTerm);
+                const categoryMatch = !category || group[0].category === category;
+                return nameMatch && categoryMatch;
+            });
+            
+            displayProducts();
+        }
+        
+        loadData();
+    </script>
+</body>
+</html>

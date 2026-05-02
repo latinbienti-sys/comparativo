@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comparacion Precios Merida</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        h1 { color: #667eea; text-align: center; }
+        .producto { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        .header { background: #667eea; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .tienda { display: flex; justify-content: space-between; padding: 8px; margin: 3px 0; background: #f8f9fa; border-radius: 4px; }
+        .mejor { background: #d4edda; border: 2px solid #28a745; font-weight: bold; }
+        .ahorro { background: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 4px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Comparacion de Precios - Merida</h1>
+    <p style="text-align:center;">LatinBien vs SoyTechno vs Multimax</p>
+    
+    <div id="lista"></div>
+
+    <script>
+        // Cargar datos del JSON
+        fetch('datos_comparacion.json')
+            .then(response => response.json())
+            .then(comparaciones => {
+                const lista = document.getElementById('lista');
+                
+                comparaciones.forEach((prod, idx) => {
+                    // Ordenar por precio
+                    prod.precios.sort((a, b) => a.precio - b.precio);
+                    const minPrecio = prod.precios[0].precio;
+                    const maxPrecio = prod.precios[prod.precios.length - 1].precio;
+                    const ahorro = maxPrecio - minPrecio;
+                    const ahorroPct = ((ahorro / maxPrecio) * 100).toFixed(1);
+                    
+                    let html = '<div class="producto">' +
+                        '<div class="header">' +
+                            '<strong>' + (idx + 1) + '. ' + prod.nombre + '</strong>' +
+                            '<div style="font-size:0.9em;">' + prod.categoria + '</div>' +
+                        '</div>';
+                    
+                    prod.precios.forEach(p => {
+                        let clase = 'tienda';
+                        if (p.precio === minPrecio) clase += ' mejor';
+                        
+                        html += '<div class="' + clase + '">' +
+                            '<span>' + p.tienda + '</span>' +
+                            '<span>$' + p.precio.toFixed(2) + '</span>' +
+                        '</div>';
+                    });
+                    
+                    if (ahorro > 0) {
+                        html += '<div class="ahorro">' +
+                            '💰 Ahorro: <strong>$' + ahorro.toFixed(2) + '</strong> (' + ahorroPct + '%)' +
+                        '</div>';
+                    }
+                    
+                    html += '</div>';
+                    lista.innerHTML += html;
+                });
+            })
+            .catch(error => {
+                console.error('Error cargando datos:', error);
+                document.getElementById('lista').innerHTML = '<p style="text-align:center; color:#666;">Error cargando datos</p>';
+            });
+    </script>
+</body>
+</html>

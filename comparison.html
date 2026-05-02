@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Precios - Mérida, Venezuela</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .info-bar {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 5px;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .controls input, .controls select {
+            padding: 10px 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .controls input:focus, .controls select:focus {
+            border-color: #764ba2;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+        
+        .product-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .product-header h3 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .product-category {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        
+        .price-comparison {
+            padding: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .price-row.best-price {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            font-weight: bold;
+        }
+        
+        .price-row.worst-price {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+        }
+        
+        .store-name {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .best-price .price {
+            color: #28a745;
+        }
+        
+        .worst-price .price {
+            color: #dc3545;
+        }
+        
+        .savings {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            margin: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .savings strong {
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+        
+        .no-matches {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+        
+        .no-matches h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px 30px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-card .label {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .info-bar {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛒 Comparación de Precios</h1>
+            <p>Mérida, Venezuela - LatinBien vs SoyTechno</p>
+        </header>
+        
+        <div class="info-bar">
+            <div class="info-item">
+                <strong>📅 Fecha:</strong> <span id="fecha"></span>
+            </div>
+            <div class="info-item">
+                <strong>🏪 Tiendas:</strong> LatinBien, SoyTechno
+            </div>
+            <div class="info-item">
+                <strong>📱 Productos:</strong> <span id="total-productos">0</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar producto..." oninput="filterProducts()">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="">Todas las categorías</option>
+                <option value="Telefonos">📱 Teléfonos</option>
+                <option value="Televisores">📺 Televisores</option>
+                <option value="Computacion">💻 Computación</option>
+                <option value="Tablets">📱 Tablets</option>
+                <option value="Hogar">🏠 Hogar</option>
+            </select>
+        </div>
+        
+        <div id="statsContainer" class="stats" style="display:none;">
+            <div class="stat-card">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">Total Comparaciones</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-ahorro">0%</div>
+                <div class="label">Ahorro Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-mejor">$0</div>
+                <div class="label">Mejor Ahorro</div>
+            </div>
+        </div>
+        
+        <div id="productGrid" class="product-grid"></div>
+        
+        <div id="noMatches" class="no-matches" style="display:none;">
+            <h2>😕 No se encontraron productos</h2>
+            <p>Intenta con otro término de búsqueda</p>
+        </div>
+    </div>
+
+    <script>
+        const data = {"matches": []};
+        let filteredData = [];
+        
+        // Cargar datos del JSON
+        async function loadData() {
+            try {
+                const response = await fetch('comparison_latinbien_soytechno.json');
+                const json = await response.json();
+                data.matches = json.matches || [];
+                data.total_products = json.total_products || 0;
+                filteredData = data.matches;
+                displayProducts();
+                updateStats();
+                document.getElementById('fecha').textContent = new Date().toLocaleDateString('es-VE');
+                document.getElementById('total-productos').textContent = data.matches.length;
+            } catch (error) {
+                console.error('Error cargando datos:', error);
+                // Usar datos de ejemplo si no hay JSON
+                loadExampleData();
+            }
+        }
+        
+        function loadExampleData() {
+            data.matches = [
+                {
+                    "0": {"store": "LatinBien", "name": "iPhone 17 Pro Max 256GB Esim", "price": "2369.34", "category": "Telefonos"},
+                    "1": {"store": "SoyTechno", "name": "Apple iPhone 16 Pro Max – 6.9″", "price": "1979.00", "category": "Telefonos"}
+                }
+            ];
+            filteredData = data.matches;
+            displayProducts();
+        }
+        
+        function displayProducts() {
+            const grid = document.getElementById('productGrid');
+            const noMatches = document.getElementById('noMatches');
+            
+            if (filteredData.length === 0) {
+                grid.innerHTML = '';
+                noMatches.style.display = 'block';
+                return;
+            }
+            
+            noMatches.style.display = 'none';
+            grid.innerHTML = '';
+            
+            filteredData.forEach((match, index) => {
+                const products = Object.values(match).filter(p => p.store);
+                if (products.length < 2) return;
+                
+                // Encontrar mejor y peor precio
+                const prices = products.map(p => parseFloat(p.price));
+                const minPrice = Math.min(...prices);
+                const maxPrice = Math.max(...prices);
+                const savings = maxPrice - minPrice;
+                const savingsPct = ((savings / maxPrice) * 100).toFixed(1);
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.dataset.category = products[0].category || 'Otros';
+                card.dataset.name = products[0].name.toLowerCase();
+                
+                let pricesHTML = '';
+                const sortedProducts = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+                
+                sortedProducts.forEach((product, idx) => {
+                    const price = parseFloat(product.price);
+                    let rowClass = 'price-row';
+                    if (price === minPrice) rowClass += ' best-price';
+                    if (price === maxPrice && products.length > 1) rowClass += ' worst-price';
+                    
+                    pricesHTML += `
+                        <div class="${rowClass}">
+                            <span class="store-name">${product.store}</span>
+                            <span class="price">$${product.price}</span>
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="product-header">
+                        <h3>${products[0].name.substring(0, 60)}${products[0].name.length > 60 ? '...' : ''}</h3>
+                        <div class="product-category">📦 ${products[0].category || 'Otros'}</div>
+                    </div>
+                    <div class="price-comparison">
+                        ${pricesHTML}
+                    </div>
+                    ${savings > 0 ? `
+                        <div class="savings">
+                            💰 Ahorro: <strong>$${savings.toFixed(2)}</strong> (${savingsPct}%)
+                        </div>
+                    ` : ''}
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            filteredData = data.matches.filter(match => {
+                const products = Object.values(match).filter(p => p.store);
+                if (products.length === 0) return false;
+                
+                const nameMatch = products[0].name.toLowerCase().includes(searchTerm);
+                const categoryMatch = !category || products[0].category === category;
+                
+                return nameMatch && categoryMatch;
+            });
+            
+            displayProducts();
+        }
+        
+        function updateStats() {
+            const container = document.getElementById('statsContainer');
+            container.style.display = 'grid';
+            
+            let totalComparisons = filteredData.length;
+            let totalSavings = [];
+            let maxSavings = 0;
+            
+            filteredData.forEach(match => {
+                const products = Object.values(match).filter(p => p.store);
+                if (products.length < 2) return;
+                
+                const prices = products.map(p => parseFloat(p.price));
+                const min = Math.min(...prices);
+                const max = Math.max(...prices);
+                const saving = max - min;
+                
+                if (saving > 0) totalSavings.push(saving);
+                if (saving > maxSavings) maxSavings = saving;
+            });
+            
+            const avgSavings = totalSavings.length > 0 ? 
+                (totalSavings.reduce((a, b) => a + b, 0) / totalSavings.length).toFixed(0) : 0;
+            
+            document.getElementById('stat-total').textContent = totalComparisons;
+            document.getElementById('stat-ahorro').textContent = avgSavings + '%';
+            document.getElementById('stat-mejor').textContent = '$' + maxSavings.toFixed(2);
+        }
+        
+        // Cargar datos al iniciar
+        loadData();
+    </script>
+</body>
+</html>

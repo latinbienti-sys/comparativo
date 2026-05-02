@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comparacion Precios Merida - Completo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .controls { padding: 20px; background: #f8f9fa; border-bottom: 2px solid #e9ecef; display: flex; gap: 15px; flex-wrap: wrap; }
+        .controls input, .controls select { padding: 10px 15px; border: 2px solid #667eea; border-radius: 8px; font-size: 1em; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; background: #f8f9fa; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; padding: 30px; }
+        .product-card { background: white; border: 2px solid #e9ecef; border-radius: 12px; overflow: hidden; transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); border-color: #667eea; }
+        .product-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; }
+        .product-header h3 { font-size: 1.3em; margin-bottom: 5px; }
+        .product-header .categoria { opacity: 0.9; font-size: 0.9em; }
+        .price-comparison { padding: 20px; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; margin: 8px 0; background: #f8f9fa; border-radius: 8px; transition: all 0.3s; }
+        .price-row.mejor { background: #d4edda; border: 2px solid #28a745; font-weight: bold; }
+        .price-row.peor { background: #f8d7da; border: 2px solid #dc3545; }
+        .store-name { font-weight: 600; color: #495057; }
+        .price { font-size: 1.2em; font-weight: bold; color: #667eea; }
+        .mejor .price { color: #28a745; }
+        .peor .price { color: #dc3545; }
+        .ahorro { background: #fff3cd; border: 2px solid #ffc107; padding: 15px; margin: 10px 20px; border-radius: 8px; text-align: center; }
+        .ahorro strong { color: #ff6b6b; font-size: 1.2em; }
+        .no-matches { text-align: center; padding: 60px; color: #6c757d; }
+        .store-badge { display: inline-block; padding: 2px 8px; margin: 2px; background: #667eea; color: white; border-radius: 4px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Comparacion de Precios - Merida</h1>
+            <p>LatinBien vs SoyTechno vs Multimax vs Frigilux vs IVOO - Venezuela</p>
+            <div style="margin-top: 15px;">
+                <span class="store-badge">LatinBien</span>
+                <span class="store-badge">SoyTechno</span>
+                <span class="store-badge">Multimax</span>
+                <span class="store-badge">Frigilux</span>
+                <span class="store-badge">IVOO</span>
+                <span class="store-badge">MegaTecno</span>
+            </div>
+        </header>
+        
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Buscar producto..." oninput="filterProducts()">
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="">Todas las categorias</option>
+                <option value="Telefonos">Telefonos</option>
+                <option value="Televisores">Televisores</option>
+                <option value="Laptops">Laptops</option>
+                <option value="Monitores">Monitores</option>
+                <option value="Routers">Routers</option>
+                <option value="Computacion">Computacion</option>
+                <option value="Cocinas">Cocinas</option>
+                <option value="Neveras">Neveras</option>
+                <option value="Aires AC">Aires AC</option>
+                <option value="Lavadoras">Lavadoras</option>
+                <option value="Hogar">Hogar</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Tablets">Tablets</option>
+                <option value="Automotriz">Automotriz</option>
+                <option value="Cocina">Cocina</option>
+                <option value="Energia">Energia</option>
+            </select>
+        </div>
+        
+        <div id="statsContainer" class="stats">
+            <div class="stat-card">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">Total Productos</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-ahorro-prom">$0</div>
+                <div class="label">Ahorro Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-mejor">$0</div>
+                <div class="label">Mejor Ahorro</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="stat-tiendas">0</div>
+                <div class="label">Tiendas Comparadas</div>
+            </div>
+        </div>
+        
+        <div id="productGrid" class="product-grid"></div>
+        
+        <div id="noMatches" class="no-matches" style="display:none;">
+            <h2>No se encontraron productos</h2>
+            <p>Intenta con otro termino de busqueda</p>
+        </div>
+    </div>
+
+    <script>
+        const allData = [
+    {
+        "nombre": "iPhone 17 Pro Max 256GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 2369.34},
+            {"tienda": "SoyTechno", "precio": 1979.00},
+            {"tienda": "Multimax", "precio": 2450.00},
+            {"tienda": "MegaTecno", "precio": 2420.00},
+            {"tienda": "IVOO", "precio": 2400.00}
+        ]
+    },
+    {
+        "nombre": "iPhone 16 128GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1560.25},
+            {"tienda": "SoyTechno", "precio": 1139.00},
+            {"tienda": "Multimax", "precio": 1620.00},
+            {"tienda": "IVOO", "precio": 1580.00}
+        ]
+    },
+    {
+        "nombre": "Samsung Galaxy A16 5G 8GB/256GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 284.32},
+            {"tienda": "SoyTechno", "precio": 310.00},
+            {"tienda": "Multimax", "precio": 310.00},
+            {"tienda": "IVOO", "precio": 300.00}
+        ]
+    },
+    {
+        "nombre": "Aiwa 32 HD Smart TV Google TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 196.57},
+            {"tienda": "Multimax", "precio": 210.00},
+            {"tienda": "IVOO", "precio": 199.99}
+        ]
+    },
+    {
+        "nombre": "Aiwa 43 HD Smart TV Google TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 335.22},
+            {"tienda": "Multimax", "precio": 350.00},
+            {"tienda": "IVOO", "precio": 340.00}
+        ]
+    },
+    {
+        "nombre": "Samsung 65 Crystal UHD 4K Smart TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1651.16},
+            {"tienda": "SoyTechno", "precio": 1700.00},
+            {"tienda": "IVOO", "precio": 1699.99}
+        ]
+    },
+    {
+        "nombre": "Laptop All In One Lenovo Ryzen 3 8GB 256GB",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 950.00},
+            {"tienda": "LatinBien", "precio": 999.00},
+            {"tienda": "IVOO", "precio": 980.00}
+        ]
+    },
+    {
+        "nombre": "Laptop Dell Inspiron Core i7 16GB 1TB",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 1219.00},
+            {"tienda": "LatinBien", "precio": 1300.00},
+            {"tienda": "IVOO", "precio": 1250.00}
+        ]
+    },
+    {
+        "nombre": "Samsung 28 Monitor 4K UHD",
+        "categoria": "Monitores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 669.93},
+            {"tienda": "SoyTechno", "precio": 519.00},
+            {"tienda": "IVOO", "precio": 550.00}
+        ]
+    },
+    {
+        "nombre": "Impresora Epson L3250 Multifuncional",
+        "categoria": "Computacion",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 363.30},
+            {"tienda": "SoyTechno", "precio": 380.00},
+            {"tienda": "IVOO", "precio": 370.00}
+        ]
+    },
+    {
+        "nombre": "Router Mercusys 300Mbps",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 45.00},
+            {"tienda": "SoyTechno", "precio": 50.00},
+            {"tienda": "Multimax", "precio": 55.00},
+            {"tienda": "IVOO", "precio": 49.99}
+        ]
+    },
+    {
+        "nombre": "Router Tp-Link AC1200 Dual Band",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 90.00},
+            {"tienda": "IVOO", "precio": 89.99}
+        ]
+    },
+    {
+        "nombre": "Cocina Industrial 6 quemadores",
+        "categoria": "Cocinas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1200.00},
+            {"tienda": "Multimax", "precio": 1350.00},
+            {"tienda": "IVOO", "precio": 1299.99}
+        ]
+    },
+    {
+        "nombre": "Cocina 4 quemadores acero inoxidable",
+        "categoria": "Cocinas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 850.00},
+            {"tienda": "Frigilux", "precio": 900.00},
+            {"tienda": "IVOO", "precio": 880.00}
+        ]
+    },
+    {
+        "nombre": "Nevera Frigilux 2 puertas 340L",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1100.00},
+            {"tienda": "Frigilux", "precio": 1050.00},
+            {"tienda": "Multimax", "precio": 1200.00},
+            {"tienda": "IVOO", "precio": 1149.99}
+        ]
+    },
+    {
+        "nombre": "Nevera Samsung 350L No Frost",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1350.00},
+            {"tienda": "Frigilux", "precio": 1400.00},
+            {"tienda": "IVOO", "precio": 1399.99}
+        ]
+    },
+    {
+        "nombre": "Aire Acondicionado Aiwa 18K BTU Inverter",
+        "categoria": "Aires AC",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 835.41},
+            {"tienda": "Frigilux", "precio": 800.00},
+            {"tienda": "Multimax", "precio": 900.00},
+            {"tienda": "IVOO", "precio": 879.99}
+        ]
+    },
+    {
+        "nombre": "Aire Acondicionado 12K BTU Inverter",
+        "categoria": "Aires AC",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 650.00},
+            {"tienda": "Frigilux", "precio": 620.00},
+            {"tienda": "IVOO", "precio": 639.99}
+        ]
+    },
+    {
+        "nombre": "Lavadora Automatica 24Kg Frigidaire",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "Multimax", "precio": 799.99},
+            {"tienda": "Frigilux", "precio": 750.00},
+            {"tienda": "IVOO", "precio": 769.99}
+        ]
+    },
+    {
+        "nombre": "Lavadora 16Kg Carga Frontal",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 580.00},
+            {"tienda": "Frigilux", "precio": 550.00},
+            {"tienda": "IVOO", "precio": 560.00}
+        ]
+    },
+    {
+        "nombre": "EcoFlow Delta 2 1024WH",
+        "categoria": "Energia",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1463.63},
+            {"tienda": "SoyTechno", "precio": 1500.00},
+            {"tienda": "IVOO", "precio": 1480.00}
+        ]
+    },
+    {
+        "nombre": "EcoFlow River 2 Max 512WH",
+        "categoria": "Energia",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 935.27},
+            {"tienda": "SoyTechno", "precio": 980.00},
+            {"tienda": "IVOO", "precio": 950.00}
+        ]
+    },
+    {
+        "nombre": "Colchon Serta Matrimonial",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 450.00},
+            {"tienda": "Multimax", "precio": 480.00},
+            {"tienda": "IVOO", "precio": 469.99}
+        ]
+    },
+    {
+        "nombre": "Calentador de Agua 50L",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 280.00},
+            {"tienda": "Frigilux", "precio": 260.00},
+            {"tienda": "IVOO", "precio": 279.99}
+        ]
+    },
+    {
+        "nombre": "Bicicleta Montana 29",
+        "categoria": "Deportes",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 350.00},
+            {"tienda": "Multimax", "precio": 380.00},
+            {"tienda": "IVOO", "precio": 365.00}
+        ]
+    },
+    {
+        "nombre": "iPad mini 64GB",
+        "categoria": "Tablets",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 1096.00},
+            {"tienda": "LatinBien", "precio": 1200.00},
+            {"tienda": "IVOO", "precio": 1150.00}
+        ]
+    },
+    {
+        "nombre": "Caucho Mazzini 175/70 R13",
+        "categoria": "Automotriz",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 61.43},
+            {"tienda": "Multimax", "precio": 70.00},
+            {"tienda": "IVOO", "precio": 65.00}
+        ]
+    },
+    {
+        "nombre": "Bateria Automotriz 60Ah",
+        "categoria": "Automotriz",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 180.00},
+            {"tienda": "Multimax", "precio": 200.00},
+            {"tienda": "IVOO", "precio": 190.00}
+        ]
+    },
+    {
+        "nombre": "Ninja Air Fryer Max XL AF161",
+        "categoria": "Cocina",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 278.34},
+            {"tienda": "Multimax", "precio": 300.00},
+            {"tienda": "IVOO", "precio": 289.99}
+        ]
+    },
+    {
+        "nombre": "Smart TV 50 4K",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 179.99}
+        ]
+    },
+    {
+        "nombre": "Smart TV 43 4K",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 129.99}
+        ]
+    },
+    {
+        "nombre": "Smart TV 32 HD",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 89.99}
+        ]
+    },
+    {
+        "nombre": "Freidora de Aire",
+        "categoria": "Cocina",
+        "precios": [
+            {"tienda": "IVOO", "precio": 39.99}
+        ]
+    },
+    {
+        "nombre": "Dispensador de Agua Sipragon",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "IVOO", "precio": 69.99}
+        ]
+    },
+    {
+        "nombre": "Lavadora Semiautomatica 13 Kg",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "IVOO", "precio": 129.99}
+        ]
+    },
+    {
+        "nombre": "All in one 23 LED FHD 1080P",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "IVOO", "precio": 199.99}
+        ]
+    },
+    {
+        "nombre": "Nevera Top Freezer",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "IVOO", "precio": 214.99}
+        ]
+    }
+];
+        
+        let filteredData = allData;
+        
+        function displayProducts() {
+            const grid = document.getElementById('productGrid');
+            const noMatches = document.getElementById('noMatches');
+            
+            if (filteredData.length === 0) {
+                grid.innerHTML = '';
+                noMatches.style.display = 'block';
+                return;
+            }
+            
+            noMatches.style.display = 'none';
+            grid.innerHTML = '';
+            
+            filteredData.forEach((prod, index) => {
+                const precios = prod.precios.sort((a, b) => a.precio - b.precio);
+                const minPrecio = precios[0].precio;
+                const maxPrecio = precios[precios.length - 1].precio;
+                const ahorro = maxPrecio - minPrecio;
+                
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.dataset.category = prod.categoria;
+                card.dataset.name = prod.nombre.toLowerCase();
+                
+                let preciosHTML = '';
+                precios.forEach(p => {
+                    let rowClass = 'price-row';
+                    if (p.precio === minPrecio) rowClass += ' mejor';
+                    if (p.precio === maxPrecio && precios.length > 1) rowClass += ' peor';
+                    
+                    preciosHTML += `
+                        <div class="${rowClass}">
+                            <span class="store-name">${p.tienda}</span>
+                            <span class="price">$${p.precio.toFixed(2)}</span>
+                        </div>
+                    `;
+                });
+                
+                card.innerHTML = `
+                    <div class="product-header">
+                        <h3>${prod.nombre}</h3>
+                        <div class="categoria">${prod.categoria}</div>
+                    </div>
+                    <div class="price-comparison">
+                        ${preciosHTML}
+                    </div>
+                    ${ahorro > 0 ? `
+                        <div class="ahorro">
+                            Ahorro: <strong>$${ahorro.toFixed(2)}</strong>
+                        </div>
+                    ` : ''}
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function filterProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+            
+            filteredData = allData.filter(prod => {
+                const nameMatch = prod.nombre.toLowerCase().includes(searchTerm);
+                const categoryMatch = !category || prod.categoria === category;
+                return nameMatch && categoryMatch;
+            });
+            
+            displayProducts();
+            updateStats();
+        }
+        
+        function updateStats() {
+            let totalAhorros = [];
+            let maxAhorro = 0;
+            let tiendas = new Set();
+            
+            filteredData.forEach(prod => {
+                prod.precios.forEach(p => tiendas.add(p.tienda));
+                const precios = prod.precios.map(p => p.precio);
+                const min = Math.min(...precios);
+                const max = Math.max(...precios);
+                const saving = max - min;
+                
+                if (saving > 0) totalAhorros.push(saving);
+                if (saving > maxAhorro) maxAhorro = saving;
+            });
+            
+            const avgAhorro = totalAhorros.length > 0 
+                ? (totalAhorros.reduce((a, b) => a + b, 0) / totalAhorros.length).toFixed(2) 
+                : 0;
+            
+            document.getElementById('stat-total').textContent = filteredData.length;
+            document.getElementById('stat-ahorro-prom').textContent = '$' + avgAhorro;
+            document.getElementById('stat-mejor').textContent = '$' + maxAhorro.toFixed(2);
+            document.getElementById('stat-tiendas').textContent = tiendas.size;
+        }
+        
+        displayProducts();
+        updateStats();
+    </script>
+</body>
+</html>

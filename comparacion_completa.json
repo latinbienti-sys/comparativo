@@ -1,0 +1,507 @@
+[
+    {
+        "nombre": "iPhone 17 Pro Max 256GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 2369.34},
+            {"tienda": "SoyTechno", "precio": 1979.00},
+            {"tienda": "Multimax", "precio": 2450.00},
+            {"tienda": "MegaTecno", "precio": 2420.00},
+            {"tienda": "IVOO", "precio": 2400.00}
+        ]
+    },
+    {
+        "nombre": "iPhone 16 128GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1560.25},
+            {"tienda": "SoyTechno", "precio": 1139.00},
+            {"tienda": "Multimax", "precio": 1620.00},
+            {"tienda": "IVOO", "precio": 1580.00}
+        ]
+    },
+    {
+        "nombre": "iPhone 14 512GB eSIM",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1484.65}
+        ]
+    },
+    {
+        "nombre": "Samsung Galaxy A16 5G 8GB/256GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 284.32},
+            {"tienda": "SoyTechno", "precio": 310.00},
+            {"tienda": "Multimax", "precio": 310.00},
+            {"tienda": "IVOO", "precio": 300.00}
+        ]
+    },
+    {
+        "nombre": "iPad mini 64GB 6ta Gen",
+        "categoria": "Tablets",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 1096.00},
+            {"tienda": "LatinBien", "precio": 1200.00},
+            {"tienda": "IVOO", "precio": 1150.00}
+        ]
+    },
+    {
+        "nombre": "iPad mini 64GB Wi-Fi + Cellular 6ta Gen",
+        "categoria": "Tablets",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1668.85}
+        ]
+    },
+    {
+        "nombre": "Apple Pencil 2da Generacion",
+        "categoria": "Accesorios",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 287.78}
+        ]
+    },
+    {
+        "nombre": "Aiwa 32 HD Smart TV Google TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 196.57},
+            {"tienda": "Multimax", "precio": 210.00},
+            {"tienda": "IVOO", "precio": 199.99}
+        ]
+    },
+    {
+        "nombre": "Aiwa 43 HD Smart TV Google TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 335.22},
+            {"tienda": "Multimax", "precio": 350.00},
+            {"tienda": "IVOO", "precio": 340.00}
+        ]
+    },
+    {
+        "nombre": "Samsung 65 Crystal UHD 4K Smart TV",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1651.16},
+            {"tienda": "SoyTechno", "precio": 1700.00},
+            {"tienda": "IVOO", "precio": 1699.99}
+        ]
+    },
+    {
+        "nombre": "Samsung 22 FHD Super Slim",
+        "categoria": "Monitores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 243.76}
+        ]
+    },
+    {
+        "nombre": "Samsung 28 Monitor 4K UHD",
+        "categoria": "Monitores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 669.93},
+            {"tienda": "SoyTechno", "precio": 519.00},
+            {"tienda": "IVOO", "precio": 550.00}
+        ]
+    },
+    {
+        "nombre": "Samsung 32 Curved Monitor 1920x1080",
+        "categoria": "Monitores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 540.17}
+        ]
+    },
+    {
+        "nombre": "LG 20 HD Monitor D-Sub HDMI",
+        "categoria": "Monitores",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 222.33}
+        ]
+    },
+    {
+        "nombre": "Laptop All In One Lenovo Ryzen 3 8GB 256GB",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 950.00},
+            {"tienda": "LatinBien", "precio": 999.00},
+            {"tienda": "IVOO", "precio": 980.00}
+        ]
+    },
+    {
+        "nombre": "Laptop Dell Inspiron Core i7 16GB 1TB",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 1219.00},
+            {"tienda": "LatinBien", "precio": 1300.00},
+            {"tienda": "IVOO", "precio": 1250.00}
+        ]
+    },
+    {
+        "nombre": "All in One HP 21.5 Intel Celeron 4GB 256GB SSD",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 859.98}
+        ]
+    },
+    {
+        "nombre": "All in One Lenovo 19.5 Intel Celeron 16GB 512GB SSD",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 917.90}
+        ]
+    },
+    {
+        "nombre": "All in one 23 LED FHD 1080P",
+        "categoria": "Laptops",
+        "precios": [
+            {"tienda": "IVOO", "precio": 199.99}
+        ]
+    },
+    {
+        "nombre": "Impresora Epson L3250 Multifuncional",
+        "categoria": "Computacion",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 363.30},
+            {"tienda": "SoyTechno", "precio": 380.00},
+            {"tienda": "IVOO", "precio": 370.00}
+        ]
+    },
+    {
+        "nombre": "Impresora Epson L1250 Color",
+        "categoria": "Computacion",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 315.56}
+        ]
+    },
+    {
+        "nombre": "Epson EX3280 Proyector 3600 Lumens",
+        "categoria": "Computacion",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1180.19}
+        ]
+    },
+    {
+        "nombre": "Router Mercusys 300Mbps",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 45.00},
+            {"tienda": "SoyTechno", "precio": 50.00},
+            {"tienda": "Multimax", "precio": 55.00},
+            {"tienda": "IVOO", "precio": 49.99}
+        ]
+    },
+    {
+        "nombre": "Router Tp-Link AC1200 Dual Band",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "SoyTechno", "precio": 90.00},
+            {"tienda": "IVOO", "precio": 89.99}
+        ]
+    },
+    {
+        "nombre": "Router Mikrotik RB3011UiAS-RM",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 314.51}
+        ]
+    },
+    {
+        "nombre": "Starlink Standard Kit AC Dual Band",
+        "categoria": "Routers",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1179.05}
+        ]
+    },
+    {
+        "nombre": "Cocina Industrial 6 quemadores",
+        "categoria": "Cocinas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1200.00},
+            {"tienda": "Multimax", "precio": 1350.00},
+            {"tienda": "IVOO", "precio": 1299.99}
+        ]
+    },
+    {
+        "nombre": "Cocina 4 quemadores acero inoxidable",
+        "categoria": "Cocinas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 850.00},
+            {"tienda": "Frigilux", "precio": 900.00},
+            {"tienda": "IVOO", "precio": 880.00}
+        ]
+    },
+    {
+        "nombre": "Nevera Frigilux 2 puertas 340L",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1100.00},
+            {"tienda": "Frigilux", "precio": 1050.00},
+            {"tienda": "Multimax", "precio": 1200.00},
+            {"tienda": "IVOO", "precio": 1149.99}
+        ]
+    },
+    {
+        "nombre": "Nevera Samsung 350L No Frost",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1350.00},
+            {"tienda": "Frigilux", "precio": 1400.00},
+            {"tienda": "IVOO", "precio": 1399.99}
+        ]
+    },
+    {
+        "nombre": "Aiwa Nevera Top Mount 14.5 CuFt Acero",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1039.00}
+        ]
+    },
+    {
+        "nombre": "Aiwa Nevera Top Mount 16.5 CuFt Acero",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1384.74}
+        ]
+    },
+    {
+        "nombre": "Nevera Top Freezer",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "IVOO", "precio": 214.99}
+        ]
+    },
+    {
+        "nombre": "Aiwa Congelador Horizontal 198L",
+        "categoria": "Neveras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 451.05}
+        ]
+    },
+    {
+        "nombre": "Aire Acondicionado Aiwa 18K BTU Inverter",
+        "categoria": "Aires AC",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 835.41},
+            {"tienda": "Frigilux", "precio": 800.00},
+            {"tienda": "Multimax", "precio": 900.00},
+            {"tienda": "IVOO", "precio": 879.99}
+        ]
+    },
+    {
+        "nombre": "Aire Acondicionado 12K BTU Inverter",
+        "categoria": "Aires AC",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 650.00},
+            {"tienda": "Frigilux", "precio": 620.00},
+            {"tienda": "IVOO", "precio": 639.99}
+        ]
+    },
+    {
+        "nombre": "Lavadora Automatica 24Kg Frigidaire",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "Multimax", "precio": 799.99},
+            {"tienda": "Frigilux", "precio": 750.00},
+            {"tienda": "IVOO", "precio": 769.99}
+        ]
+    },
+    {
+        "nombre": "Lavadora 16Kg Carga Frontal",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 580.00},
+            {"tienda": "Frigilux", "precio": 550.00},
+            {"tienda": "IVOO", "precio": 560.00}
+        ]
+    },
+    {
+        "nombre": "Lavadora Semiautomatica 13 Kg",
+        "categoria": "Lavadoras",
+        "precios": [
+            {"tienda": "IVOO", "precio": 129.99}
+        ]
+    },
+    {
+        "nombre": "EcoFlow Delta 2 1024WH",
+        "categoria": "Energia",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1463.63},
+            {"tienda": "SoyTechno", "precio": 1500.00},
+            {"tienda": "IVOO", "precio": 1480.00}
+        ]
+    },
+    {
+        "nombre": "EcoFlow River 2 Max 512WH",
+        "categoria": "Energia",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 935.27},
+            {"tienda": "SoyTechno", "precio": 980.00},
+            {"tienda": "IVOO", "precio": 950.00}
+        ]
+    },
+    {
+        "nombre": "EcoFlow River 2 Pro 768WH",
+        "categoria": "Energia",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1291.45}
+        ]
+    },
+    {
+        "nombre": "MARSRIVA Power Bank 10000mAh",
+        "categoria": "Accesorios",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 65.94}
+        ]
+    },
+    {
+        "nombre": "Colchon Serta Euro Pillow Ortopedico",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 666.92},
+            {"tienda": "Multimax", "precio": 480.00},
+            {"tienda": "IVOO", "precio": 469.99}
+        ]
+    },
+    {
+        "nombre": "Colchon Colflex 2 Pillow Ortopedico",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 689.02}
+        ]
+    },
+    {
+        "nombre": "Calentador de Agua 50L",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 280.00},
+            {"tienda": "Frigilux", "precio": 260.00},
+            {"tienda": "IVOO", "precio": 279.99}
+        ]
+    },
+    {
+        "nombre": "Dispensador de Agua Sipragon",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "IVOO", "precio": 69.99}
+        ]
+    },
+    {
+        "nombre": "Barra De Sonido Aiwa 40w",
+        "categoria": "Hogar",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 117.00}
+        ]
+    },
+    {
+        "nombre": "Bicicleta Montana 29",
+        "categoria": "Deportes",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 350.00},
+            {"tienda": "Multimax", "precio": 380.00},
+            {"tienda": "IVOO", "precio": 365.00}
+        ]
+    },
+    {
+        "nombre": "Bicicleta SPZ Rockhopper Sport 29",
+        "categoria": "Deportes",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1230.04}
+        ]
+    },
+    {
+        "nombre": "Bicicleta SPZ Rockhopper Expert 29",
+        "categoria": "Deportes",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 2250.08}
+        ]
+    },
+    {
+        "nombre": "Ninja Air Fryer Max XL AF161",
+        "categoria": "Cocina",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 278.34},
+            {"tienda": "Multimax", "precio": 300.00},
+            {"tienda": "IVOO", "precio": 289.99}
+        ]
+    },
+    {
+        "nombre": "Freidora de Aire",
+        "categoria": "Cocina",
+        "precios": [
+            {"tienda": "IVOO", "precio": 39.99}
+        ]
+    },
+    {
+        "nombre": "Mini Waffer Heart WP-MK05",
+        "categoria": "Cocina",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 84.33}
+        ]
+    },
+    {
+        "nombre": "Nintendo Switch Oled",
+        "categoria": "Consolas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 700.27}
+        ]
+    },
+    {
+        "nombre": "Xbox Series X 1TB",
+        "categoria": "Consolas",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 1205.34}
+        ]
+    },
+    {
+        "nombre": "Fujifilm Instax Mini 12 Combo 30 Paper",
+        "categoria": "Camaras",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 281.88}
+        ]
+    },
+    {
+        "nombre": "Caucho Mazzini 175/70 R13",
+        "categoria": "Automotriz",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 61.43},
+            {"tienda": "Multimax", "precio": 70.00},
+            {"tienda": "IVOO", "precio": 65.00}
+        ]
+    },
+    {
+        "nombre": "Caucho Mazzini 195/60 R15",
+        "categoria": "Automotriz",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 82.49}
+        ]
+    },
+    {
+        "nombre": "Bateria Automotriz 60Ah",
+        "categoria": "Automotriz",
+        "precios": [
+            {"tienda": "LatinBien", "precio": 180.00},
+            {"tienda": "Multimax", "precio": 200.00},
+            {"tienda": "IVOO", "precio": 190.00}
+        ]
+    },
+    {
+        "nombre": "Smart TV 50 4K",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 179.99}
+        ]
+    },
+    {
+        "nombre": "Smart TV 43 4K",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 129.99}
+        ]
+    },
+    {
+        "nombre": "Smart TV 32 HD",
+        "categoria": "Televisores",
+        "precios": [
+            {"tienda": "IVOO", "precio": 89.99}
+        ]
+    }
+]

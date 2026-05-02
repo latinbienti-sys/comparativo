@@ -1,0 +1,448 @@
+[
+    {
+        "nombre": "iPhone 17 Pro Max 256GB Esim",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 2369.34
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 1979.0
+            },
+            {
+                "tienda": "Multimax",
+                "precio": 2450.0
+            },
+            {
+                "tienda": "MegaTecno",
+                "precio": 2420.0
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa 32\" HD Smart TV, Google TV.",
+        "categoria": "Televisores",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 196.57
+            },
+            {
+                "tienda": "Multimax",
+                "precio": 210.0
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa 32\" HD Smart TV, Google TV.",
+        "categoria": "Televisores",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 196.57
+            },
+            {
+                "tienda": "Multimax",
+                "precio": 350.0
+            }
+        ]
+    },
+    {
+        "nombre": "iPhone 16 128GB (1SIM+eSIM)",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1560.25
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 1139.0
+            }
+        ]
+    },
+    {
+        "nombre": "iPhone 14 (eSIM) 512GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1484.65
+            }
+        ]
+    },
+    {
+        "nombre": "Samsung Galaxy A16 5G 8GB/256GB",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 284.32
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 310.0
+            }
+        ]
+    },
+    {
+        "nombre": "Fujifilm Intax Mini 12 + 30 Paper + Marcos (Combo B).",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 281.88
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa Home AWHACC18DI03P Aire Acondicionado Split Efficient Inverter 18K BTU Wi-Fi.",
+        "categoria": "Hogar",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 835.41
+            }
+        ]
+    },
+    {
+        "nombre": "Ninja Air Fryer Max XL AF161.",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 278.34
+            },
+            {
+                "tienda": "Multimax",
+                "precio": 300.0
+            }
+        ]
+    },
+    {
+        "nombre": "EcoFlow Delta 2 / 1024WH",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1463.63
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 1500.0
+            }
+        ]
+    },
+    {
+        "nombre": "EcoFlow Delta 2 / 1024WH",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1463.63
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 980.0
+            }
+        ]
+    },
+    {
+        "nombre": "MARSRIVA en KP3 -10000mAh",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 65.94
+            }
+        ]
+    },
+    {
+        "nombre": "Caucho Mazzini 175/70 R13",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 61.43
+            },
+            {
+                "tienda": "Multimax",
+                "precio": 70.0
+            }
+        ]
+    },
+    {
+        "nombre": "Caucho Mazzini 175/70 R13",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 61.43
+            }
+        ]
+    },
+    {
+        "nombre": "Samsung 22\" FHD Super Slim 1920X1080",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 243.76
+            }
+        ]
+    },
+    {
+        "nombre": "Samsung 28\" UR55 UHD 4K Monitor (3840 X 2160)",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 669.93
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 519.0
+            }
+        ]
+    },
+    {
+        "nombre": "Samsung 28\" UR55 UHD 4K Monitor (3840 X 2160)",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 669.93
+            }
+        ]
+    },
+    {
+        "nombre": "Samsung 28\" UR55 UHD 4K Monitor (3840 X 2160)",
+        "categoria": "Telefonos",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 669.93
+            }
+        ]
+    },
+    {
+        "nombre": "Impresora Epson Tinta Continua EcoTank L3250 (Multifuncional/Color).",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 363.3
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 380.0
+            }
+        ]
+    },
+    {
+        "nombre": "Nintendo Switch Oled Neon Red & Neon Blue",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 700.27
+            }
+        ]
+    },
+    {
+        "nombre": "Microsoft Xbox Series X (USA), 1TB.",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1205.34
+            }
+        ]
+    },
+    {
+        "nombre": "Bicicleta Cross Country SPZ Rockhopper Sport FTGRN/OIS",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1230.04
+            }
+        ]
+    },
+    {
+        "nombre": "Bicicleta Cross Country SPZ Rockhopper Sport FTGRN/OIS",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1230.04
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa Congelador Horizontal, 198Lt (7cuFt).",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 451.05
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa Nevera Refrigeradora Top Mount, 14.5 CuFt, Dispensador de Agua, Acero Inoxidable.",
+        "categoria": "Hogar",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1039.0
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa Nevera Refrigeradora Top Mount, 14.5 CuFt, Dispensador de Agua, Acero Inoxidable.",
+        "categoria": "Hogar",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1039.0
+            }
+        ]
+    },
+    {
+        "nombre": "Impresora Epson Tinta Continua EcoTank L3250 (Multifuncional/Color).",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 363.3
+            }
+        ]
+    },
+    {
+        "nombre": "Epson EX3280 3LCD XGA Projector 3600 Lumens",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1180.19
+            }
+        ]
+    },
+    {
+        "nombre": "Apple Pencil 2th generation (MU8F2AM/A)",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 287.78
+            }
+        ]
+    },
+    {
+        "nombre": "Mini Waffer Heart WP-MK05",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 84.33
+            }
+        ]
+    },
+    {
+        "nombre": "LG. LG20MK400HB. 20\". D-Sub. HDMI. HD (1366x768) TN Monitot with AMD FreeSync.",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 222.33
+            }
+        ]
+    },
+    {
+        "nombre": "Aiwa Nevera Refrigeradora Top Mount, 14.5 CuFt, Dispensador de Agua, Acero Inoxidable.",
+        "categoria": "Hogar",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1039.0
+            }
+        ]
+    },
+    {
+        "nombre": "All in One HP 22-dd2000nh, 21.5\", Intel Celeron J4025, 4GB, 256GB SSD, W11.",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 859.98
+            }
+        ]
+    },
+    {
+        "nombre": "Starlink Standard Kit AC Dual Band Wi-Fi System",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 1179.05
+            }
+        ]
+    },
+    {
+        "nombre": "RB3011UiAS-RM Router Mikrotik",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 314.51
+            }
+        ]
+    },
+    {
+        "nombre": "Colchón Serta Euro Pillow Ortopedico 1.40*1.90 (Matrimonial)",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 666.92
+            }
+        ]
+    },
+    {
+        "nombre": "Colchón Serta Euro Pillow Ortopedico 1.40*1.90 (Matrimonial)",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 666.92
+            }
+        ]
+    },
+    {
+        "nombre": "All in One HP 22-dd2000nh, 21.5\", Intel Celeron J4025, 4GB, 256GB SSD, W11.",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 859.98
+            }
+        ]
+    },
+    {
+        "nombre": "Fujifilm Intax Mini 12 + 30 Paper + Marcos (Combo B).",
+        "categoria": "Otros",
+        "precios": [
+            {
+                "tienda": "LatinBien",
+                "precio": 281.88
+            },
+            {
+                "tienda": "SoyTechno",
+                "precio": 1096.0
+            }
+        ]
+    }
+]

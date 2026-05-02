@@ -1,0 +1,75 @@
+{
+  "latinbien_count": 40,
+  "matches": [
+    [
+      {
+        "store": "LatinBien",
+        "name": "iPhone 17 Pro Max 256GB Esim",
+        "price": "2369.34",
+        "url": "https://latinbien.com/shop/cel005-01034-iphone-17-pro-max-256gb-esim-2093",
+        "image": "https://latinbien.com/web/image/product.template/2093/image_512",
+        "category": "Telefonos"
+      },
+      {
+        "store": "Multimax",
+        "name": "iPhone 17 Pro Max 256GB",
+        "price": "2450.00",
+        "category": "Telefonos"
+      },
+      {
+        "store": "MegaTecno",
+        "name": "iPhone 17 Pro Max 256GB",
+        "price": "2420.00",
+        "category": "Telefonos"
+      }
+    ],
+    [
+      {
+        "store": "LatinBien",
+        "name": "Aiwa 32\" HD Smart TV, Google TV.",
+        "price": "196.57",
+        "url": "https://latinbien.com/shop/tv016-00002-aiwa-32-hd-smart-tv-google-tv-1322",
+        "image": "https://latinbien.com/web/image/product.template/1322/image_512",
+        "category": "Televisores"
+      },
+      {
+        "store": "Multimax",
+        "name": "Aiwa 32 Smart TV",
+        "price": "210.00",
+        "category": "Televisores"
+      }
+    ],
+    [
+      {
+        "store": "LatinBien",
+        "name": "iPhone 16 128GB (1SIM+eSIM)",
+        "price": "1560.25",
+        "url": "https://latinbien.com/shop/cel005-00791-iphone-16-128gb-1sim-esim-1507",
+        "image": "https://latinbien.com/web/image/product.template/1507/image_512",
+        "category": "Telefonos"
+      },
+      {
+        "store": "Multimax",
+        "name": "iPhone 16 128GB",
+        "price": "1620.00",
+        "category": "Telefonos"
+      }
+    ],
+    [
+      {
+        "store": "LatinBien",
+        "name": "Samsung Galaxy A16 5G 8GB/256GB",
+        "price": "284.32",
+        "url": "https://latinbien.com/shop/samsung-galaxy-a16-5g-8gb-256gb-1681",
+        "image": "https://latinbien.com/web/image/product.template/1681/image_512",
+        "category": "Telefonos"
+      },
+      {
+        "store": "Multimax",
+        "name": "Samsung A16 5G",
+        "price": "310.00",
+        "category": "Telefonos"
+      }
+    ]
+  ]
+}

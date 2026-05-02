@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comparacion Precios</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .producto { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .header { background: #667eea; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .precio-row { display: flex; justify-content: space-between; padding: 8px; margin: 5px 0; background: #f8f9fa; border-radius: 4px; }
+        .mejor { background: #d4edda; border: 2px solid #28a745; font-weight: bold; }
+        .ahorro { background: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 4px; text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Comparacion de Precios - Merida</h1>
+    <p>LatinBien vs SoyTechno vs Multimax</p>
+
+    <div id="lista"></div>
+
+    <script>
+        const comparaciones = [
+            {
+                nombre: "iPhone 17 Pro Max 256GB",
+                categoria: "Telefonos",
+                precios: [
+                    {tienda: "LatinBien", precio: 2369.34},
+                    {tienda: "SoyTechno", precio: 1979.00},
+                    {tienda: "Multimax", precio: 2450.00}
+                ]
+            },
+            {
+                nombre: "iPhone 16 128GB",
+                categoria: "Telefonos",
+                precios: [
+                    {tienda: "LatinBien", precio: 1560.25},
+                    {tienda: "SoyTechno", precio: 1139.00},
+                    {tienda: "Multimax", precio: 1620.00}
+                ]
+            },
+            {
+                nombre: "Samsung Galaxy A16 5G 8GB/256GB",
+                categoria: "Telefonos",
+                precios: [
+                    {tienda: "LatinBien", precio: 284.32},
+                    {tienda: "SoyTechno", precio: 310.00},
+                    {tienda: "Multimax", precio: 310.00}
+                ]
+            },
+            {
+                nombre: "Aiwa 32\" HD Smart TV",
+                categoria: "Televisores",
+                precios: [
+                    {tienda: "LatinBien", precio: 196.57},
+                    {tienda: "Multimax", precio: 210.00}
+                ]
+            },
+            {
+                nombre: "iPhone 14 128GB/512GB",
+                categoria: "Telefonos",
+                precios: [
+                    {tienda: "LatinBien", precio: 1484.65},
+                    {tienda: "SoyTechno", precio: 923.00}
+                ]
+            }
+        ];
+
+        const lista = document.getElementById('lista');
+        
+        comparaciones.forEach((item, idx) => {
+            // Ordenar por precio
+            item.precios.sort((a, b) => a.precio - b.precio);
+            const minPrecio = item.precios[0].precio;
+            const maxPrecio = item.precios[item.precios.length - 1].precio;
+            const ahorro = maxPrecio - minPrecio;
+            const ahorroPct = ((ahorro / maxPrecio) * 100).toFixed(1);
+            
+            let html = '<div class="producto">' +
+                '<div class="header"><strong>' + (idx + 1) + '. ' + item.nombre + '</strong> - ' + item.categoria + '</div>';
+            
+            item.precios.forEach(p => {
+                let clase = 'precio-row';
+                if (p.precio === minPrecio) clase += ' mejor';
+                
+                html += '<div class="' + clase + '"><span>' + p.tienda + '</span><span>$' + p.precio.toFixed(2) + '</span></div>';
+            });
+            
+            if (ahorro > 0) {
+                html += '<div class="ahorro">💰 Ahorro: $' + ahorro.toFixed(2) + ' (' + ahorroPct + '%)</div>';
+            }
+            
+            html += '</div>';
+            lista.innerHTML += html;
+        });
+    </script>
+</body>
+</html>
