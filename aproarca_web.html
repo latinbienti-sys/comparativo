@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APROARCA - El Corazón del Café de Mérida</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1B3022;
+            --forest-light: #2A4233;
+            --gold: #D4A574;
+            --gold-light: #E8C4A0;
+            --cream: #F9F5F0;
+            --white: #FFFFFF;
+            --gray-light: #F5F5F5;
+            --gray: #888888;
+            --text-dark: #2C2C2C;
+            --text-medium: #555555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(27, 48, 34, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--forest);
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 0.65rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--forest) !important;
+            padding: 10px 24px !important;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            letter-spacing: 1px;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            margin: 6px 0;
+            transition: all 0.3s;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-left {
+            background: var(--forest);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 5rem 5rem;
+            position: relative;
+        }
+
+        .hero-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="1.5" fill="rgba(212,165,116,0.1)"/><circle cx="50" cy="20" r="2" fill="rgba(212,165,116,0.08)"/><circle cx="80" cy="40" r="1" fill="rgba(212,165,116,0.12)"/><circle cx="30" cy="60" r="2" fill="rgba(212,165,116,0.06)"/><circle cx="70" cy="70" r="1.5" fill="rgba(212,165,116,0.1)"/><circle cx="90" cy="80" r="1" fill="rgba(212,165,116,0.08)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 165, 116, 0.15);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            display: block;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--forest);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+
+        .hero-right {
+            position: relative;
+            background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest) 100%);
+            overflow: hidden;
+        }
+
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coffee-beans {
+            width: 80%;
+            height: 80%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, var(--gold) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, var(--gold-light) 0%, transparent 40%),
+                linear-gradient(135deg, #2A4233 0%, #1B3022 50%, #0D1A10 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .coffee-beans::before {
+            content: '☕';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.15;
+            color: var(--gold);
+        }
+
+        .hero-stats {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            display: flex;
+            gap: 3rem;
+            z-index: 10;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ========== DUAL PATH NAVIGATION ========== */
+        .dual-path {
+            padding: 8rem 5%;
+            background: var(--cream);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(212, 165, 116, 0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .path-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .path-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .path-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(27, 48, 34, 0.15);
+            border-color: var(--gold);
+        }
+
+        .path-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+            opacity: 0.1;
+            transform: translate(30%, -30%);
+        }
+
+        .path-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--forest);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover .path-icon {
+            background: var(--gold);
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .path-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+            transition: stroke 0.3s ease;
+        }
+
+        .path-card:hover .path-icon svg {
+            stroke: var(--forest);
+        }
+
+        .path-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .path-description {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .path-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .path-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        .path-features li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .path-features li::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--forest);
+            border-radius: 50%;
+        }
+
+        .path-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s;
+        }
+
+        .path-cta:hover {
+            color: var(--forest);
+            gap: 15px;
+        }
+
+        /* ========== COFFEE SHOWCASE ========== */
+        .showcase {
+            padding: 8rem 5%;
+            background: var(--white);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+            transition: all 0.4s ease;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(27, 48, 34, 0.2);
+        }
+
+        .showcase-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(27, 48, 34, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .showcase-item:nth-child(1) {
+            grid-row: span 2;
+        }
+
+        .showcase-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .showcase-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--forest);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .showcase-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .showcase-desc {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .showcase-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6rem;
+            opacity: 0.2;
+            color: var(--gold);
+        }
+
+        /* ========== MAP SECTION ========== */
+        .map-section {
+            padding: 8rem 5%;
+            background: var(--forest);
+            position: relative;
+        }
+
+        .map-section .section-title {
+            color: var(--white);
+        }
+
+        .map-section .section-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .map-container {
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            background: var(--forest-light);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M40 60 Q60 40 80 60 T120 40 T160 60" fill="none" stroke="rgba(212,165,116,0.2)" stroke-width="2"/><circle cx="100" cy="80" r="15" fill="rgba(212,165,116,0.1)"/><circle cx="60" cy="120" r="10" fill="rgba(212,165,116,0.08)"/><circle cx="140" cy="100" r="12" fill="rgba(212,165,116,0.09)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .map-visual {
+            height: 300px;
+            background: linear-gradient(135deg, #3A5243 0%, #2A4233 50%, #1B3022 100%);
+            border-radius: 16px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-visual::before {
+            content: '📍';
+            font-size: 4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .map-label {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(27, 48, 34, 0.9);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-label h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-label p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        .map-locations {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .location {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .location:hover {
+            background: rgba(212, 165, 116, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .location-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .location-name {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-detail {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            padding: 8rem 5%;
+            background: var(--cream);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(27, 48, 34, 0.1);
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: -10px;
+            right: 2rem;
+            font-size: 5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--forest);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--forest);
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(212,165,116,0.1)"/><circle cx="80" cy="40" r="3" fill="rgba(212,165,116,0.08)"/><circle cx="40" cy="60" r="2" fill="rgba(212,165,116,0.12)"/><circle cx="60" cy="80" r="1.5" fill="rgba(212,165,116,0.06)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #0D1A10;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--forest);
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .footer-description {
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                padding: 6rem 3rem 4rem;
+            }
+
+            .hero-right {
+                min-height: 400px;
+            }
+
+            .path-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .showcase-item:nth-child(1) {
+                grid-row: span 1;
+            }
+
+            .map-locations {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--forest);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-stats {
+                position: static;
+                margin-top: 3rem;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        .animate-delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">A</div>
+            <div>
+                <div class="logo-text">APROARCA</div>
+                <div class="logo-subtitle">Café de Mérida</div>
+            </div>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#inicio">Inicio</a>
+            <a href="#cafe">Café Verde</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#registro" class="nav-cta">Unirse</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-left">
+            <div class="hero-badge animate">Asociación de Productores</div>
+            <h1 class="hero-title animate animate-delay-1">
+                El Corazón
+                <span>del Café de Mérida</span>
+            </h1>
+            <p class="hero-description animate animate-delay-2">
+                Conectamos caficultores con torrefactores de excelencia. Desde los Andes venezolanos hasta tu taza, trazabilidad y calidad garantizada.
+            </p>
+            <div class="hero-buttons animate animate-delay-3">
+                <a href="#caficultor" class="btn-primary">
+                    Soy Caficultor
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#torrefactor" class="btn-secondary">Soy Torrefactor</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-image-container">
+                <div class="coffee-beans"></div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Productores</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1800m</div>
+                    <div class="stat-label">Altitud</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Arábica</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dual Path Navigation -->
+    <section class="dual-path" id="cafe">
+        <div class="section-header">
+            <div class="section-badge">Únete a Nosotros</div>
+            <h2 class="section-title">Elige tu Camino</h2>
+            <p class="section-subtitle">
+                Conectamos la tradición cafetalera con el mercado moderno. Selecciona tu perfil para comenzar.
+            </p>
+        </div>
+
+        <div class="path-grid">
+            <div class="path-card" id="caficultor">
+                <div class="path-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3z"/>
+                        <circle cx="12" cy="7" r="2"/>
+                    </svg>
+                </div>
+                <h3 class="path-title">Soy Caficultor</h3>
+                <p class="path-description">
+                    Conecta tu finca con torrefactores de todo el país. Vende tu café verde con precios justos y trazabilidad completa.
+                </p>
+                <ul class="path-features">
+                    <li>Registro de finca y lotes</li>
+                    <li>Acceso directo a compradores</li>
+                    <li>Asesoría técnica especializada</li>
+                    <li>Precios justos y transparentes</li>
+                </ul>
+                <a href="#" class="path-cta">
+                    Registrarme como Caficultor
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="path-card" id="torrefactor">
+                <div class="path-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+                        <line x1="6" y1="1" x2="6" y2="4"/>
+                        <line x1="10" y1="1" x2="10" y2="4"/>
+                        <line x1="14" y1="1" x2="14" y2="4"/>
+                    </svg>
+                </div>
+                <h3 class="path-title">Soy Torrefactor</h3>
+                <p class="path-description">
+                    Accede a café verde de altura, trazabilidad completa y lotes exclusivos de los mejores caficultores andinos.
+                </p>
+                <ul class="path-features">
+                    <li>Catálogo de lotes disponibles</li>
+                    <li>Trazabilidad de origen</li>
+                    <li>Muestras de café verde</li>
+                    <li>Contacto directo con productores</li>
+                </ul>
+                <a href="#" class="path-cta">
+                    Registrarme como Torrefactor
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Showcase -->
+    <section class="showcase" id="nosotros">
+        <div class="section-header">
+            <div class="section-badge">Nuestro Producto</div>
+            <h2 class="section-title">Café Verde de Excelencia</h2>
+            <p class="section-subtitle">
+                Desde la finca hasta tu galpón, garantizamos trazabilidad y calidad en cada grano.
+            </p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <div class="showcase-icon">🌿</div>
+                <div class="showcase-content">
+                    <span class="showcase-tag">Origen</span>
+                    <h3 class="showcase-title">Finca El Paraíso</h3>
+                    <p class="showcase-desc">Estanques, Mérida - 1,650m de altitud. Proceso lavado, variedades Bourbon y Typica.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon">☕</div>
+                <div class="showcase-content">
+                    <span class="showcase-tag">Proceso</span>
+                    <h3 class="showcase-title">Lavado Artesanal</h3>
+                    <p class="showcase-desc">Fermentación controlada y secado solar para preservar los sabores únicos de la montaña.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon">📦</div>
+                <div class="showcase-content">
+                    <span class="showcase-tag">Calidad</span>
+                    <h3 class="showcase-title">Oro Verde</h3>
+                    <p class="showcase-desc">Café verde premium, clasificación exportación. Notas frutales y acidez cítrica brillante.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon">🏔️</div>
+                <div class="showcase-content">
+                    <span class="showcase-tag">Altura</span>
+                    <h3 class="showcase-title">Café de Montaña</h3>
+                    <p class="showcase-desc">1,200m - 2,000m sobre el nivel del mar. Maduración lenta para concentrar aromas.</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <div class="showcase-icon">🤝</div>
+                <div class="showcase-content">
+                    <span class="showcase-tag">Comercio</span>
+                    <h3 class="showcase-title">Directo y Justo</h3>
+                    <p class="showcase-desc">Sin intermediarios. Precio justo para el productor, calidad garantizada para el comprador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="section-header">
+            <div class="section-badge">Ubicación</div>
+            <h2 class="section-title">Desde los Andes Venezolanos</h2>
+            <p class="section-subtitle">
+                Nuestra presencia en Estanques, Mérida, conecta a productores de toda la región andina.
+            </p>
+        </div>
+
+        <div class="map-container">
+            <div class="map-visual">
+                <div class="map-label">
+                    <h4>Galpón Principal - Estanques</h4>
+                    <p>Estado Mérida, Venezuela | Centro de acopio y procesamiento de café verde</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-locations">
+            <div class="location">
+                <div class="location-icon">🏠</div>
+                <div class="location-name">Estanques</div>
+                <div class="location-detail">Galpón Principal</div>
+            </div>
+            <div class="location">
+                <div class="location-icon">🌾</div>
+                <div class="location-name">Araguaney</div>
+                <div class="location-detail">Zona de Producción</div>
+            </div>
+            <div class="location">
+                <div class="location-icon">⛰️</div>
+                <div class="location-name">Santa Cruz</div>
+                <div class="location-detail">Zona de Producción</div>
+            </div>
+            <div class="location">
+                <div class="location-icon">📍</div>
+                <div class="location-name">Mesa de Bolívar</div>
+                <div class="location-detail">Zona de Producción</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <div class="section-badge">Testimonios</div>
+            <h2 class="section-title">Lo que Dicen Nuestros Socios</h2>
+            <p class="section-subtitle">
+                Historias reales de caficultores y torrefactores que confían en APROARCA.
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Gracias a APROARCA, mi café verde ahora llega directamente a los mejores torrefactores del país. El precio justo cambia vidas.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JM</div>
+                    <div>
+                        <div class="author-name">Juan Medina</div>
+                        <div class="author-role">Caficultor, Estanques</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    La trazabilidad completa me permite ofrecer a mis clientes un café con historia. APROARCA es sinónimo de calidad.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MR</div>
+                    <div>
+                        <div class="author-name">María Rodríguez</div>
+                        <div class="author-role">Torrefactor, Caracas</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">
+                    Desde que me asocié, mis ingresos aumentaron un 30% y tengo acceso a asesoría técnica que antes no podía costear.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">CG</div>
+                    <div>
+                        <div class="author-name">Carlos García</div>
+                        <div class="author-role">Caficultor, Santa Cruz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contacto">
+        <h2 class="cta-title">Únete a la Revolución del Café</h2>
+        <p class="cta-description">
+            Sé parte de la asociación que está transformando el comercio del café en los Andes venezolanos.
+        </p>
+        <div class="cta-buttons">
+            <a href="#" class="btn-primary">
+                Registrarme Ahora
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="#" class="btn-secondary">Conocer Más</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="registro">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">A</div>
+                    <div class="footer-logo-text">APROARCA</div>
+                </div>
+                <p class="footer-description">
+                    Asociación de Productores de Café del Estado Mérida. Conectando tradición con innovación desde el corazón de los Andes venezolanos.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#cafe">Café Verde</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Servicios</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Registro Caficultor</a></li>
+                    <li><a href="#">Registro Torrefactor</a></li>
+                    <li><a href="#">Muestras de Café</a></li>
+                    <li><a href="#">Asesoría Técnica</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Estanques, Estado Mérida</a></li>
+                    <li><a href="#">info@aproarca.com</a></li>
+                    <li><a href="#">+58 424-0000000</a></li>
+                    <li><a href="#">WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 APROARCA - Asociación de Productores de Café del Estado Mérida. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
